@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Asmaul Husna Mayad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aurora: {
+                            bg: '#fdf4ff',
+                            white: '#ffffff',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            dark: '#1f2937',
+                            muted: '#6b7280',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        head: ['"Outfit"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(168, 85, 247, 0.15)',
+                    },
+                    animation: {
+                        'grow-bar': 'grow 1.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        grow: {
+                            '0%': { width: '0%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fdf4ff; color: #1f2937; cursor: none; }
+        
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: #a855f7; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid #a855f7; transition: all 0.1s; }
+        body:hover .cursor-outline { width: 50px; height: 50px; background-color: rgba(168, 85, 247, 0.05); }
+
+        /* Read Mode */
+        body.read-mode nav, body.read-mode footer, body.read-mode .no-read { opacity: 0.2; pointer-events: none; transition: opacity 0.5s; }
+        body.read-mode .paper-content { transform: scale(1.02); box-shadow: 0 20px 60px -10px rgba(0,0,0,0.1); z-index: 50; position: relative; background: white; padding: 40px; border-radius: 20px; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-aurora-blue selection:text-white">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+<nav class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300 relative" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        
+        <a href="index.html" class="flex items-center text-2xl font-head font-bold tracking-tight">
+            <img src="https://i.postimg.cc/wMczPXsy/mayad.jpg" alt="Asmaul Husna Mayad" class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-aurora-purple shadow-sm">
+            <span class="text-aurora-purple mr-1">✿</span> 
+            <span id="nav-name">ASMAUL HUSNA MAYAD</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-aurora-muted" id="nav-menu">
+            <li><a href="index.html" class="hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="text-aurora-purple font-bold">Gallery</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                Hire Me
+            </a>
+            
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aurora-muted hover:text-aurora-purple focus:outline-none transition">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-white/50 shadow-lg top-24 left-0">
+        <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-aurora-muted">
+            <li><a href="index.html" class="block hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="block hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="block hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="block hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="block hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="block hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="block text-aurora-purple font-bold">Gallery</a></li>
+            <li class="md:hidden mt-2">
+                <a href="contact.html" class="block text-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                    Hire Me
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <header class="relative py-24 px-6 text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="text-aurora-blue font-bold text-xs uppercase tracking-widest mb-4 block animate-pulse">Scientific Inquiry</span>
+            <h1 class="text-4xl md:text-6xl font-head font-bold text-aurora-dark mb-6">
+                Bridging Design & <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-aurora-blue to-aurora-purple">Data Science.</span>
+            </h1>
+            <p class="text-aurora-muted text-lg max-w-2xl mx-auto">
+                Exploring the intersection of Machine Learning and Human-Computer Interaction. My research focuses on predictive models for healthcare and user-centric data visualization.
+            </p>
+        </div>
+        <div class="absolute top-0 left-0 w-96 h-96 bg-aurora-blue/5 rounded-full blur-[80px]"></div>
+    </header>
+
+    <section class="py-24 px-6 bg-white border-y border-gray-100 paper-container">
+        <div class="max-w-5xl mx-auto paper-content transition-all duration-500">
+            <div class="flex justify-between items-start mb-8">
+                <span class="bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Published: Jan 2025</span>
+                <button onclick="toggleReadMode()" class="text-aurora-muted hover:text-aurora-dark text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> <span id="read-btn-text">Focus Mode</span>
+                </button>
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-head font-bold text-aurora-dark mb-6 leading-tight">
+                Heart Disease Quantum Prediction: A Machine Learning Approach
+            </h2>
+            
+            <div class="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+                <div class="w-10 h-10 bg-aurora-bg rounded-full flex items-center justify-center text-aurora-purple font-bold">M</div>
+                <div>
+                    <p class="text-sm font-bold text-aurora-dark">Asmaul Husna Mayad</p>
+                    <p class="text-xs text-aurora-muted">Researcher & Data Analyst</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="md:col-span-2 space-y-6">
+                    <div>
+                        <h4 class="font-bold text-aurora-dark mb-2">Abstract</h4>
+                        <p class="text-aurora-muted text-sm leading-relaxed text-justify">
+                            This research presents a robust machine learning model designed to analyze complex health datasets for the early prediction of heart disease. By implementing advanced **Preprocessing** techniques and **Classification Algorithms**, the model identifies risk factors with high accuracy. The study aims to bridge the gap between raw medical data and actionable diagnostic insights .
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-aurora-dark mb-2">Key Objectives</h4>
+                        <ul class="text-sm text-aurora-muted space-y-2 list-disc list-inside">
+                            <li>To clean and preprocess noisy medical datasets.</li>
+                            <li>To implement and compare multiple classification algorithms.</li>
+                            <li>To visualize risk factors for better clinical decision-making.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-aurora-bg p-6 rounded-2xl h-fit">
+                    <h4 class="font-bold text-aurora-dark mb-4 text-sm">Project Metadata</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs text-aurora-muted uppercase font-bold">Domain</p>
+                            <p class="text-sm font-medium">Health Tech / Data Mining</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-aurora-muted uppercase font-bold">Tools</p>
+                            <p class="text-sm font-medium">Python, Pandas, Scikit-Learn</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-aurora-muted uppercase font-bold">Status</p>
+                            <p class="text-sm font-medium text-green-600">Completed</p>
+                        </div>
+                    </div>
+                    <button onclick="copyCitation()" class="mt-6 w-full py-2 border border-aurora-purple/20 text-aurora-purple text-xs font-bold rounded-lg hover:bg-aurora-purple hover:text-white transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-quote-right"></i> Cite Paper
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg no-read">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl font-head font-bold text-aurora-dark mb-12 text-center">Research Methodology</h2>
+            
+            <div class="grid md:grid-cols-4 gap-4 relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-blue-200 to-purple-200 -z-0 -translate-y-1/2 rounded-full"></div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative z-10 text-center border border-gray-100 group hover:-translate-y-2 transition">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">Collection</h4>
+                    <p class="text-xs text-aurora-muted">Raw Health Data</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative z-10 text-center border border-gray-100 group hover:-translate-y-2 transition">
+                    <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-filter"></i>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">Preprocessing</h4>
+                    <p class="text-xs text-aurora-muted">Cleaning & Normalization</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative z-10 text-center border border-gray-100 group hover:-translate-y-2 transition">
+                    <div class="w-12 h-12 bg-pink-50 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">Modeling</h4>
+                    <p class="text-xs text-aurora-muted">Classification Algorithms</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative z-10 text-center border border-gray-100 group hover:-translate-y-2 transition">
+                    <div class="w-12 h-12 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">Prediction</h4>
+                    <p class="text-xs text-aurora-muted">Risk Analysis Output</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white no-read">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/2">
+                <span class="text-aurora-blue font-bold text-xs uppercase tracking-widest mb-2 block">Performance Metrics</span>
+                <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Model Accuracy</h2>
+                <p class="text-aurora-muted text-sm leading-relaxed mb-8">
+                    Comparative analysis of different algorithms used in the study. The Quantum-enhanced approach showed promising improvements over traditional Logistic Regression.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-1">
+                            <span>Logistic Regression</span>
+                            <span>82%</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gray-400 rounded-full animate-grow-bar" style="width: 82%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-1">
+                            <span>Random Forest</span>
+                            <span>89%</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-aurora-blue rounded-full animate-grow-bar" style="width: 89%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-1 text-aurora-purple">
+                            <span>Proposed Model</span>
+                            <span>94%</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-aurora-purple rounded-full animate-grow-bar" style="width: 94%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <div class="bg-aurora-bg p-8 rounded-3xl border border-aurora-blue/10 relative">
+                    <i class="fa-solid fa-microscope text-6xl text-aurora-blue/20 absolute bottom-4 right-4"></i>
+                    <h3 class="font-bold text-aurora-dark mb-4">Research Impact</h3>
+                    <ul class="space-y-3 text-sm text-aurora-muted">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i> Early Detection Support</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i> Reduced False Positives</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i> Scalable for Large Datasets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg no-read">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl font-head font-bold text-aurora-dark mb-8 text-center">Research Interests & Future Work</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-4"><i class="fa-solid fa-universal-access"></i></div>
+                    <h4 class="font-bold text-sm mb-2">Inclusive HCI</h4>
+                    <p class="text-xs text-aurora-muted">Designing interfaces accessible for elderly users in rural Bangladesh.</p>
+                </div>
+                
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center mb-4"><i class="fa-solid fa-eye"></i></div>
+                    <h4 class="font-bold text-sm mb-2">Visual Analytics</h4>
+                    <p class="text-xs text-aurora-muted">Improving how complex health data is visualized for patients.</p>
+                </div>
+
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 opacity-60 border-dashed">
+                    <div class="w-10 h-10 bg-gray-100 text-gray-400 rounded-full flex items-center justify-center mb-4"><i class="fa-solid fa-plus"></i></div>
+                    <h4 class="font-bold text-sm mb-2">Upcoming Paper</h4>
+                    <p class="text-xs text-aurora-muted">Currently researching on UI patterns in E-Commerce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white border-t border-gray-100 text-center no-read">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Interested in this research?</h2>
+            <p class="text-aurora-muted mb-8">I am open to academic collaborations and data-driven design projects.</p>
+            <a href="contact.html" class="inline-block px-10 py-4 bg-aurora-blue text-white font-bold rounded-full hover:shadow-lg transition">
+                Contact Researcher
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-aurora-bg pt-16 pb-8 px-6 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="#" class="text-xl font-head font-bold tracking-tight text-aurora-dark">
+                    <span class="text-aurora-purple">✿</span> MAYAD
+                </a>
+                <p class="text-aurora-muted text-sm mt-4 leading-relaxed">
+                    Crafting intuitive digital experiences with a focus on user psychology and aesthetic precision.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Navigation</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="index.html" class="hover:text-aurora-purple">Home</a></li>
+                    <li><a href="projects.html" class="hover:text-aurora-purple">Portfolio</a></li>
+                    <li><a href="research.html" class="hover:text-aurora-purple">Research</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Socials</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="https://github.com/asmaulhusnamayad" class="hover:text-aurora-purple">GitHub</a></li>
+                    <li><a href="https://dribbble.com/mayadhusna" class="hover:text-aurora-purple">Dribbble</a></li>
+                    <li><a href="#" class="hover:text-aurora-purple">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><i class="fa-solid fa-location-dot mr-2 text-aurora-purple"></i> Kuril, Dhaka</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-aurora-purple"></i> mayadhusna@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-aurora-muted pt-8 border-t border-gray-200">
+            <p>&copy; 2026 Asmaul Husna Mayad. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Toggle Read Mode
+        function toggleReadMode() {
+            const body = document.body;
+            const btnText = document.getElementById('read-btn-text');
+            
+            body.classList.toggle('read-mode');
+            
+            if (body.classList.contains('read-mode')) {
+                btnText.innerText = "Exit Focus";
+            } else {
+                btnText.innerText = "Focus Mode";
+            }
+        }
+
+        // Copy Citation
+        function copyCitation() {
+            const citation = "Mayad, A. H. (2025). Heart Disease Quantum Prediction: A Machine Learning Approach. Data Science Project, AIUB.";
+            navigator.clipboard.writeText(citation).then(() => {
+                alert("Citation copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>

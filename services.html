@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Asmaul Husna Mayad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aurora: {
+                            bg: '#fdf4ff',
+                            white: '#ffffff',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            dark: '#1f2937',
+                            muted: '#6b7280'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        head: ['"Outfit"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(168, 85, 247, 0.15)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fdf4ff; color: #1f2937; cursor: none; }
+        
+        /* Cursor */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: #a855f7; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid #a855f7; transition: all 0.1s; }
+        body:hover .cursor-outline { width: 50px; height: 50px; background-color: rgba(168, 85, 247, 0.05); }
+
+        /* Service Toggle */
+        .toggle-btn.active { background-color: #a855f7; color: white; border-color: #a855f7; }
+        
+        /* Accordion */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
+        @keyframes sweep { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-aurora-purple selection:text-white">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+<nav class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300 relative" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        
+        <a href="index.html" class="flex items-center text-2xl font-head font-bold tracking-tight">
+            <img src="https://i.postimg.cc/wMczPXsy/mayad.jpg" alt="Asmaul Husna Mayad" class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-aurora-purple shadow-sm">
+            <span class="text-aurora-purple mr-1">✿</span> 
+            <span id="nav-name">ASMAUL HUSNA MAYAD</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-aurora-muted" id="nav-menu">
+            <li><a href="index.html" class="hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="text-aurora-purple font-bold">Gallery</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                Hire Me
+            </a>
+            
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aurora-muted hover:text-aurora-purple focus:outline-none transition">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-white/50 shadow-lg top-24 left-0">
+        <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-aurora-muted">
+            <li><a href="index.html" class="block hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="block hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="block hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="block hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="block hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="block hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="block text-aurora-purple font-bold">Gallery</a></li>
+            <li class="md:hidden mt-2">
+                <a href="contact.html" class="block text-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                    Hire Me
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <header class="relative py-24 px-6 text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="text-aurora-pink font-bold text-xs uppercase tracking-widest mb-4 block animate-pulse">Offerings</span>
+            <h1 class="text-4xl md:text-6xl font-head font-bold text-aurora-dark mb-6">
+                Design Solutions <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-aurora-purple to-aurora-pink">Tailored for You.</span>
+            </h1>
+            <p class="text-aurora-muted text-lg max-w-2xl mx-auto">
+                Whether you need a full product overhaul or data-driven user research, I provide packages that combine aesthetics with HCI principles.
+            </p>
+        </div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-aurora-purple/5 rounded-full blur-[80px]"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-aurora-pink/5 rounded-full blur-[80px]"></div>
+    </header>
+
+    <section class="py-12 px-6 bg-white sticky top-24 z-40 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex justify-center gap-4">
+            <button onclick="toggleServices('design')" class="toggle-btn active px-8 py-3 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">Design & UI/UX</button>
+            <button onclick="toggleServices('research')" class="toggle-btn px-8 py-3 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">Research & Data</button>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg">
+        <div class="max-w-6xl mx-auto">
+            
+            <div id="design-services" class="grid md:grid-cols-3 gap-8 service-grid">
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition group border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-aurora-purple/5 rounded-bl-full -mr-4 -mt-4 transition group-hover:scale-110"></div>
+                    <div class="w-16 h-16 bg-aurora-bg rounded-2xl flex items-center justify-center text-3xl text-aurora-purple mb-6">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aurora-dark mb-4">UI Engineering</h3>
+                    <p class="text-sm text-aurora-muted leading-relaxed mb-6">
+                        Pixel-perfect interface design for Web and Mobile applications. Focusing on visual consistency and responsive layouts.
+                    </p>
+                    <ul class="text-sm text-aurora-muted space-y-3 mb-8">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Wireframing & Prototyping</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Design Systems</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Figma / Adobe XD </li>
+                    </ul>
+                    <a href="contact.html" class="text-sm font-bold text-aurora-purple hover:underline">Start Project -></a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-soft border-2 border-aurora-purple/10 relative overflow-hidden transform md:-translate-y-4">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-aurora-purple to-aurora-pink"></div>
+                    <div class="w-16 h-16 bg-aurora-purple text-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aurora-dark mb-4">App Experience</h3>
+                    <p class="text-sm text-aurora-muted leading-relaxed mb-6">
+                        Complete mobile app design from concept to high-fidelity prototype. Specialized in user-friendly flows like Food Delivery apps[cite: 104].
+                    </p>
+                    <ul class="text-sm text-aurora-muted space-y-3 mb-8">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-aurora-purple"></i> iOS & Android Guidelines</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-aurora-purple"></i> Interactive Prototypes</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-aurora-purple"></i> User Journey Mapping</li>
+                    </ul>
+                    <a href="contact.html" class="inline-block px-6 py-2 bg-aurora-purple text-white text-xs font-bold rounded-full hover:bg-aurora-dark transition">Get Quote</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition group border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-aurora-pink/5 rounded-bl-full -mr-4 -mt-4 transition group-hover:scale-110"></div>
+                    <div class="w-16 h-16 bg-aurora-bg rounded-2xl flex items-center justify-center text-3xl text-aurora-pink mb-6">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aurora-dark mb-4">Web Design</h3>
+                    <p class="text-sm text-aurora-muted leading-relaxed mb-6">
+                        Modern, clean website designs for agencies and portfolios. Ensuring usability and aesthetic appeal [cite: 97-100].
+                    </p>
+                    <ul class="text-sm text-aurora-muted space-y-3 mb-8">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Landing Pages</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Corporate Sites</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> HTML/CSS Ready </li>
+                    </ul>
+                    <a href="contact.html" class="text-sm font-bold text-aurora-pink hover:underline">Start Project -></a>
+                </div>
+            </div>
+
+            <div id="research-services" class="hidden grid md:grid-cols-2 gap-8 service-grid">
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center text-4xl text-blue-500 shrink-0">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-aurora-dark mb-3">HCI Research Audit</h3>
+                        <p class="text-aurora-muted text-sm mb-6 leading-relaxed">
+                            A comprehensive audit of your existing product based on Human-Computer Interaction principles. Identify pain points and usability issues before redesigning[cite: 73].
+                        </p>
+                        <a href="contact.html" class="text-sm font-bold text-blue-500 hover:underline">Request Audit -></a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center text-4xl text-green-500 shrink-0">
+                        <i class="fa-solid fa-chart-network"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-aurora-dark mb-3">Data-Driven UX</h3>
+                        <p class="text-aurora-muted text-sm mb-6 leading-relaxed">
+                            Leveraging Data Mining knowledge to analyze user behavior. I use data to inform design decisions, ensuring higher engagement and conversion[cite: 74, 113].
+                        </p>
+                        <a href="contact.html" class="text-sm font-bold text-green-500 hover:underline">Explore Data UX -></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white border-t border-gray-100">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-16">My Workflow</h2>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-aurora-bg rounded-full flex items-center justify-center text-xl text-aurora-purple font-bold mb-4 shadow-sm">1</div>
+                    <h4 class="font-bold text-aurora-dark">Discovery</h4>
+                    <p class="text-xs text-aurora-muted mt-2">Understanding user needs & business goals.</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-aurora-bg rounded-full flex items-center justify-center text-xl text-aurora-pink font-bold mb-4 shadow-sm">2</div>
+                    <h4 class="font-bold text-aurora-dark">Wireframe</h4>
+                    <p class="text-xs text-aurora-muted mt-2">Low-fidelity structure & user flows.</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-aurora-bg rounded-full flex items-center justify-center text-xl text-blue-500 font-bold mb-4 shadow-sm">3</div>
+                    <h4 class="font-bold text-aurora-dark">Design</h4>
+                    <p class="text-xs text-aurora-muted mt-2">High-fidelity UI in Figma/XD.</p>
+                </div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto bg-aurora-bg rounded-full flex items-center justify-center text-xl text-green-500 font-bold mb-4 shadow-sm">4</div>
+                    <h4 class="font-bold text-aurora-dark">Handoff</h4>
+                    <p class="text-xs text-aurora-muted mt-2">Assets & specs for developers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg">
+        <div class="max-w-3xl mx-auto space-y-4">
+            <h2 class="text-2xl font-head font-bold text-aurora-dark mb-8 text-center">Common Questions</h2>
+            
+            <details class="group bg-white p-6 rounded-2xl shadow-sm cursor-pointer border border-gray-100">
+                <summary class="flex justify-between items-center font-bold text-aurora-dark">
+                    Do you provide coding services?
+                    <span class="text-aurora-purple transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                </summary>
+                <p class="text-sm text-aurora-muted mt-4 leading-relaxed">
+                    I specialize in UI/UX Design. However, I have knowledge of HTML5, CSS3, and basic JS, which helps me collaborate effectively with developers and ensure my designs are feasible.
+                </p>
+            </details>
+
+            <details class="group bg-white p-6 rounded-2xl shadow-sm cursor-pointer border border-gray-100">
+                <summary class="flex justify-between items-center font-bold text-aurora-dark">
+                    What tools do you use?
+                    <span class="text-aurora-purple transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                </summary>
+                <p class="text-sm text-aurora-muted mt-4 leading-relaxed">
+                    My primary tools are Figma and Adobe XD for design and prototyping. I also use Miro for brainstorming and Jira/Trello for project management[cite: 112].
+                </p>
+            </details>
+
+            <details class="group bg-white p-6 rounded-2xl shadow-sm cursor-pointer border border-gray-100">
+                <summary class="flex justify-between items-center font-bold text-aurora-dark">
+                    Do you work with international clients?
+                    <span class="text-aurora-purple transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                </summary>
+                <p class="text-sm text-aurora-muted mt-4 leading-relaxed">
+                    Yes, I am fluent in English [cite: 115] and comfortable working remotely using tools like Microsoft Teams and Discord[cite: 111].
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white border-t border-gray-100 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Ready to Start?</h2>
+            <p class="text-aurora-muted mb-8">Select a package or contact me for a custom quote tailored to your needs.</p>
+            <a href="contact.html" class="inline-block px-10 py-4 bg-aurora-purple text-white font-bold rounded-full hover:shadow-lg transition">
+                Get a Free Quote
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-aurora-bg pt-16 pb-8 px-6 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="#" class="text-xl font-head font-bold tracking-tight text-aurora-dark">
+                    <span class="text-aurora-purple">✿</span> MAYAD
+                </a>
+                <p class="text-aurora-muted text-sm mt-4 leading-relaxed">
+                    Crafting intuitive digital experiences with a focus on user psychology and aesthetic precision.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Navigation</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="index.html" class="hover:text-aurora-purple">Home</a></li>
+                    <li><a href="services.html" class="hover:text-aurora-purple">Services</a></li>
+                    <li><a href="projects.html" class="hover:text-aurora-purple">Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Socials</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="https://github.com/asmaulhusnamayad" class="hover:text-aurora-purple">GitHub</a></li>
+                    <li><a href="https://dribbble.com/mayadhusna" class="hover:text-aurora-purple">Dribbble</a></li>
+                    <li><a href="#" class="hover:text-aurora-purple">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><i class="fa-solid fa-location-dot mr-2 text-aurora-purple"></i> Kuril, Dhaka</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-aurora-purple"></i> mayadhusna@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-aurora-muted pt-8 border-t border-gray-200">
+            <p>&copy; 2026 Asmaul Husna Mayad. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Service Toggle Logic
+        function toggleServices(type) {
+            // Button State
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('bg-transparent', 'text-gray-500', 'border-gray-200');
+            });
+            event.target.classList.add('active');
+            event.target.classList.remove('bg-transparent', 'text-gray-500', 'border-gray-200');
+
+            // Grid Visibility
+            const designGrid = document.getElementById('design-services');
+            const researchGrid = document.getElementById('research-services');
+
+            if (type === 'design') {
+                designGrid.classList.remove('hidden');
+                designGrid.classList.add('grid');
+                researchGrid.classList.add('hidden');
+                researchGrid.classList.remove('grid');
+            } else {
+                designGrid.classList.add('hidden');
+                designGrid.classList.remove('grid');
+                researchGrid.classList.remove('hidden');
+                researchGrid.classList.add('grid');
+            }
+        }
+    </script>
+</body>
+</html>

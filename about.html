@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Asmaul Husna Mayad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aurora: {
+                            bg: '#fdf4ff',
+                            white: '#ffffff',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            dark: '#1f2937',
+                            muted: '#6b7280'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        head: ['"Outfit"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(168, 85, 247, 0.15)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fdf4ff; color: #1f2937; cursor: none; }
+        
+        /* Cursor (Same as Home) */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: #a855f7; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid #a855f7; transition: all 0.1s; }
+        body:hover .cursor-outline { width: 50px; height: 50px; background-color: rgba(168, 85, 247, 0.05); }
+
+        /* Blob Shape for Profile */
+        .blob-mask { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; animation: morph 8s ease-in-out infinite; }
+        @keyframes morph { 
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* Glass Card */
+        .glass-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
+        
+        /* Timeline Line */
+        .timeline-line::before { content: ''; position: absolute; left: 24px; top: 0; height: 100%; width: 2px; background: linear-gradient(to bottom, #a855f7, #ec4899, transparent); opacity: 0.3; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-aurora-purple selection:text-white">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+<nav class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300 relative" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        
+        <a href="index.html" class="flex items-center text-2xl font-head font-bold tracking-tight">
+            <img src="https://i.postimg.cc/wMczPXsy/mayad.jpg" alt="Asmaul Husna Mayad" class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-aurora-purple shadow-sm">
+            <span class="text-aurora-purple mr-1">✿</span> 
+            <span id="nav-name">ASMAUL HUSNA MAYAD</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-aurora-muted" id="nav-menu">
+            <li><a href="index.html" class="hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="text-aurora-purple font-bold">Gallery</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                Hire Me
+            </a>
+            
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aurora-muted hover:text-aurora-purple focus:outline-none transition">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-white/50 shadow-lg top-24 left-0">
+        <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-aurora-muted">
+            <li><a href="index.html" class="block hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="block hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="block hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="block hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="block hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="block hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="block text-aurora-purple font-bold">Gallery</a></li>
+            <li class="md:hidden mt-2">
+                <a href="contact.html" class="block text-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                    Hire Me
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+    <header class="relative py-24 px-6 overflow-hidden">
+        <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-aurora-purple/5 rounded-full blur-[80px]"></div>
+        
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
+            <div class="w-full md:w-1/2 flex justify-center">
+                <div class="relative w-80 h-80 md:w-96 md:h-96">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-aurora-purple to-aurora-pink blob-mask opacity-20 animate-float"></div>
+                    <div class="absolute inset-4 overflow-hidden blob-mask shadow-soft">
+                        <img src="https://i.postimg.cc/NjnZSTQ6/mayad.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute bottom-10 -right-4 bg-white px-6 py-3 rounded-2xl shadow-lg animate-float" style="animation-delay: 1s;">
+                        <span class="text-2xl">✨</span>
+                        <span class="text-sm font-bold text-aurora-dark ml-2">Dean's List x5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2">
+                <span class="text-aurora-purple font-bold text-xs uppercase tracking-widest mb-4 block">The Story</span>
+                <h1 class="text-4xl md:text-5xl font-head font-bold text-aurora-dark mb-6">
+                    Designing at the Intersection of <span class="text-gradient">Logic & Beauty</span>.
+                </h1>
+                <p class="text-aurora-muted text-lg mb-6 leading-relaxed" id="about-bio">
+                    Loading bio...
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-aurora-pink"></i>
+                        <span class="text-sm font-bold text-gray-600">B.Sc in CS (AIUB)</span>
+                    </div>
+                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center gap-2">
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <span class="text-sm font-bold text-gray-600">CGPA 3.83</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-16 text-center">Academic Journey</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 bg-aurora-bg rounded-2xl flex items-center justify-center text-aurora-purple text-xl group-hover:scale-110 transition shrink-0">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-aurora-dark">Bachelor in Science</h4>
+                            <p class="text-sm text-aurora-muted mb-2">American International University-Bangladesh (AIUB)</p>
+                            <div class="flex gap-3">
+                                <span class="text-xs bg-aurora-bg px-2 py-1 rounded text-aurora-purple font-bold">2022-2025</span>
+                                <span class="text-xs bg-green-50 px-2 py-1 rounded text-green-600 font-bold">CGPA: 3.83</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">Major in Information Systems. Specialized in HCI principles.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 group">
+                        <div class="w-12 h-12 bg-aurora-bg rounded-2xl flex items-center justify-center text-aurora-pink text-xl group-hover:scale-110 transition shrink-0">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-aurora-dark">Higher Secondary Certificate</h4>
+                            <p class="text-sm text-aurora-muted mb-2">Rajshahi City College</p>
+                            <div class="flex gap-3">
+                                <span class="text-xs bg-aurora-bg px-2 py-1 rounded text-aurora-purple font-bold">2018-2019</span>
+                                <span class="text-xs bg-green-50 px-2 py-1 rounded text-green-600 font-bold">GPA: 4.67</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-aurora-bg to-white p-8 rounded-3xl border border-aurora-purple/10 shadow-soft relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-5 text-9xl text-aurora-purple rotate-12"><i class="fa-solid fa-award"></i></div>
+                    
+                    <h3 class="text-2xl font-head font-bold text-aurora-dark mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-trophy text-yellow-400"></i> Honors & Awards
+                    </h3>
+                    
+                    <div class="space-y-6 relative z-10">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 font-bold text-sm">5x</div>
+                            <div>
+                                <h4 class="font-bold text-aurora-dark">Dean's List Honors Award</h4>
+                                <p class="text-sm text-aurora-muted leading-relaxed mt-1">
+                                    Awarded for earning a perfect 4.00/4.00 GPA in 5 consecutive semesters during my academic career at AIUB.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg relative">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-16 text-center">Professional Experience</h2>
+            
+            <div class="relative timeline-line space-y-12">
+                <div class="relative pl-16 group">
+                    <div class="absolute left-[16px] top-1 w-4 h-4 bg-white border-4 border-aurora-purple rounded-full z-10 group-hover:scale-125 transition"></div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-soft transition border border-gray-100">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-aurora-dark">Teacher's Assistant</h3>
+                            <span class="text-xs font-bold text-aurora-purple bg-aurora-bg px-3 py-1 rounded-full">Oct 2025 - Present</span>
+                        </div>
+                        <p class="text-sm font-bold text-gray-500 mb-4">American International University - Bangladesh</p>
+                        <ul class="text-sm text-aurora-muted space-y-2 list-disc list-inside">
+                            <li>Assisted faculty in conducting laboratory sessions for CS courses.</li>
+                            <li>Mentored junior students, simplifying complex technical concepts.</li>
+                            <li>Evaluated student performance and provided constructive feedback.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-12">Beyond The Pixel</h2>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="p-6 bg-aurora-bg rounded-2xl hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-aurora-purple mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark mb-2">Leadership</h4>
+                    <p class="text-xs text-aurora-muted">Led student teams and mentored juniors as a TA.</p>
+                </div>
+                <div class="p-6 bg-aurora-bg rounded-2xl hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-aurora-pink mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark mb-2">Design Thinking</h4>
+                    <p class="text-xs text-aurora-muted">Problem-solving through empathy and iteration.</p>
+                </div>
+                <div class="p-6 bg-aurora-bg rounded-2xl hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-blue-500 mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark mb-2">Communication</h4>
+                    <p class="text-xs text-aurora-muted">Effective presentation and stakeholder management.</p>
+                </div>
+                <div class="p-6 bg-aurora-bg rounded-2xl hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-green-500 mx-auto mb-4 shadow-sm">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark mb-2">Management</h4>
+                    <p class="text-xs text-aurora-muted">Balancing academic excellence with professional roles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-gradient-to-r from-aurora-purple/10 to-aurora-pink/10 text-center relative overflow-hidden">
+        <div class="max-w-2xl mx-auto relative z-10">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Need a copy for your file?</h2>
+            <p class="text-aurora-muted mb-8">Download my detailed CV highlighting my coursework, projects, and research publications.</p>
+            <button onclick="downloadCV(this)" class="px-10 py-4 bg-aurora-dark text-white font-bold rounded-full hover:shadow-xl transition flex items-center gap-3 mx-auto group">
+                <span class="btn-text">Download Resume</span>
+                <i class="fa-solid fa-download group-hover:translate-y-1 transition"></i>
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-16 pb-8 px-6 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="#" class="text-xl font-head font-bold tracking-tight text-aurora-dark">
+                    <span class="text-aurora-purple">✿</span> MAYAD
+                </a>
+                <p class="text-aurora-muted text-sm mt-4 leading-relaxed">
+                    Crafting intuitive digital experiences with a focus on user psychology and aesthetic precision.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Navigation</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="index.html" class="hover:text-aurora-purple">Home</a></li>
+                    <li><a href="about.html" class="hover:text-aurora-purple">About</a></li>
+                    <li><a href="projects.html" class="hover:text-aurora-purple">Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Socials</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="https://github.com/asmaulhusnamayad" class="hover:text-aurora-purple">GitHub</a></li>
+                    <li><a href="https://dribbble.com/mayadhusna" class="hover:text-aurora-purple">Dribbble</a></li>
+                    <li><a href="#" class="hover:text-aurora-purple">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><i class="fa-solid fa-location-dot mr-2 text-aurora-purple"></i> Kuril, Dhaka</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-aurora-purple"></i> mayadhusna@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-aurora-muted pt-8 border-t border-gray-100">
+            <p>&copy; 2026 Asmaul Husna Mayad. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const aboutData = {
+            bio: "Passionate UI/UX Designer with a specialized background in Human-Computer Interaction (HCI). I combine a keen eye for aesthetics with a deep understanding of user psychology to create intuitive and engaging digital experiences [cite: 76-77]. Leveraging my degree in Information Systems, I ensure designs are not only visually striking but also functional[cite: 78]."
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Bio Injection
+            document.getElementById('about-bio').innerText = aboutData.bio;
+
+            // Cursor Logic
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+        });
+
+        // Download Animation
+        function downloadCV(btn) {
+            const originalText = btn.querySelector('.btn-text').innerText;
+            const icon = btn.querySelector('i');
+            
+            btn.querySelector('.btn-text').innerText = "Downloading...";
+            icon.classList.remove('fa-download');
+            icon.classList.add('fa-spinner', 'fa-spin');
+            
+            setTimeout(() => {
+                btn.querySelector('.btn-text').innerText = "Saved!";
+                icon.classList.remove('fa-spinner', 'fa-spin');
+                icon.classList.add('fa-check');
+                btn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    btn.querySelector('.btn-text').innerText = originalText;
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-download');
+                    btn.classList.remove('bg-green-500');
+                }, 2000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Asmaul Husna Mayad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aurora: {
+                            bg: '#fdf4ff',
+                            white: '#ffffff',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            dark: '#1f2937',
+                            muted: '#6b7280'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        head: ['"Outfit"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(168, 85, 247, 0.15)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fdf4ff;
+            color: #1f2937;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #a855f7;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #a855f7;
+            transition: all 0.1s;
+        }
+
+        body:hover .cursor-outline {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(168, 85, 247, 0.05);
+        }
+
+        /* Filter Button Active */
+        .filter-btn.active {
+            background-color: #a855f7;
+            color: white;
+            border-color: #a855f7;
+        }
+
+        /* Image Hover Zoom */
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        /* Modal Animation */
+        #project-modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #project-modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #project-modal.flex {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased overflow-x-hidden selection:bg-aurora-purple selection:text-white">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+<nav class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300 relative" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        
+        <a href="index.html" class="flex items-center text-2xl font-head font-bold tracking-tight">
+            <img src="https://i.postimg.cc/wMczPXsy/mayad.jpg" alt="Asmaul Husna Mayad" class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-aurora-purple shadow-sm">
+            <span class="text-aurora-purple mr-1">✿</span> 
+            <span id="nav-name">ASMAUL HUSNA MAYAD</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-aurora-muted" id="nav-menu">
+            <li><a href="index.html" class="hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="text-aurora-purple font-bold">Gallery</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                Hire Me
+            </a>
+            
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aurora-muted hover:text-aurora-purple focus:outline-none transition">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-white/50 shadow-lg top-24 left-0">
+        <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-aurora-muted">
+            <li><a href="index.html" class="block hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="block hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="block hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="block hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="block hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="block hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="block text-aurora-purple font-bold">Gallery</a></li>
+            <li class="md:hidden mt-2">
+                <a href="contact.html" class="block text-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                    Hire Me
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <header class="relative py-24 px-6 text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="text-aurora-purple font-bold text-xs uppercase tracking-widest mb-4 block">Visual
+                Stories</span>
+            <h1 class="text-4xl md:text-6xl font-head font-bold text-aurora-dark mb-6">
+                Curated <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-aurora-purple to-aurora-pink">Works.</span>
+            </h1>
+            <p class="text-aurora-muted text-lg max-w-2xl mx-auto">
+                A collection of User Interface designs, Mobile Applications, and Data Science research projects. Each
+                piece represents a solution to a human problem.
+            </p>
+        </div>
+
+        <div class="absolute top-0 left-0 w-64 h-64 bg-aurora-purple/5 rounded-full blur-[60px]"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-aurora-pink/5 rounded-full blur-[80px]"></div>
+    </header>
+
+    <section class="py-12 px-6 bg-white sticky top-24 z-40 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-4">
+            <button onclick="filterProjects('all')"
+                class="filter-btn active px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">All
+                Projects</button>
+            <button onclick="filterProjects('ui')"
+                class="filter-btn px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">UI/UX
+                Design</button>
+            <button onclick="filterProjects('mobile')"
+                class="filter-btn px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">Mobile
+                App</button>
+            <button onclick="filterProjects('research')"
+                class="filter-btn px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">Data
+                Science</button>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white border-y border-gray-100">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/2">
+                <div class="relative rounded-3xl overflow-hidden shadow-soft group">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800"
+                        class="w-full h-auto object-cover group-hover:scale-105 transition duration-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-aurora-purple/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
+                        <p class="text-white font-bold">Data Science meets Healthcare</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <span class="text-aurora-pink font-bold text-xs uppercase tracking-widest mb-4 block">Featured
+                    Research</span>
+                <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Heart Disease Quantum Prediction</h2>
+                <p class="text-aurora-muted text-sm mb-6 leading-relaxed">
+                    Developed a machine learning model to analyze health data and predict heart disease risk. This
+                    project demonstrates the intersection of **Data Science** and **User-Centric Health Tech**,
+                    utilizing preprocessing and classification algorithms [cite: 116-118].
+                </p>
+                <div class="flex gap-3 mb-8">
+                    <span class="px-3 py-1 bg-gray-100 rounded text-xs font-bold text-gray-600">Python</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded text-xs font-bold text-gray-600">ML</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded text-xs font-bold text-gray-600">Classification</span>
+                </div>
+                <a href="research.html"
+                    class="inline-flex items-center gap-2 text-aurora-purple font-bold hover:gap-4 transition">Read Case
+                    Study <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-16">My Design Process</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="relative">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center text-aurora-purple text-2xl shadow-sm mb-6 z-10 relative">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark">Discover</h4>
+                    <p class="text-xs text-aurora-muted mt-2">User Interviews & Research</p>
+                    <div class="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gray-200 -z-0"></div>
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center text-aurora-pink text-2xl shadow-sm mb-6 z-10 relative">
+                        <i class="fa-solid fa-pen-ruler"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark">Define</h4>
+                    <p class="text-xs text-aurora-muted mt-2">Wireframing & Architecture</p>
+                    <div class="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gray-200 -z-0"></div>
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center text-blue-400 text-2xl shadow-sm mb-6 z-10 relative">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark">Design</h4>
+                    <p class="text-xs text-aurora-muted mt-2">High-Fidelity UI & Interactions</p>
+                    <div class="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gray-200 -z-0"></div>
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center text-green-500 text-2xl shadow-sm mb-6 z-10 relative">
+                        <i class="fa-solid fa-check-circle"></i>
+                    </div>
+                    <h4 class="font-bold text-aurora-dark">Deliver</h4>
+                    <p class="text-xs text-aurora-muted mt-2">Testing & Handoff</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white border-t border-gray-100 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Let's Build Something Beautiful.</h2>
+            <p class="text-aurora-muted mb-8">Ready to bring your vision to life with empathy and precision?</p>
+            <a href="contact.html"
+                class="inline-block px-10 py-4 bg-aurora-purple text-white font-bold rounded-full hover:shadow-lg transition">
+                Start Project
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-aurora-bg pt-16 pb-8 px-6 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="#" class="text-xl font-head font-bold tracking-tight text-aurora-dark">
+                    <span class="text-aurora-purple">✿</span> MAYAD
+                </a>
+                <p class="text-aurora-muted text-sm mt-4 leading-relaxed">
+                    Crafting intuitive digital experiences with a focus on user psychology and aesthetic precision.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Navigation</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="index.html" class="hover:text-aurora-purple">Home</a></li>
+                    <li><a href="projects.html" class="hover:text-aurora-purple">Portfolio</a></li>
+                    <li><a href="services.html" class="hover:text-aurora-purple">Services</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Socials</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="https://github.com/asmaulhusnamayad" class="hover:text-aurora-purple">GitHub</a></li>
+                    <li><a href="https://dribbble.com/mayadhusna" class="hover:text-aurora-purple">Dribbble</a></li>
+                    <li><a href="#" class="hover:text-aurora-purple">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><i class="fa-solid fa-location-dot mr-2 text-aurora-purple"></i> Kuril, Dhaka</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-aurora-purple"></i> mayadhusna@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-aurora-muted pt-8 border-t border-gray-200">
+            <p>&copy; 2026 Asmaul Husna Mayad. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="project-modal"
+        class="hidden fixed inset-0 z-[60] bg-white/80 backdrop-blur-md items-center justify-center p-4">
+        <div
+            class="bg-white border border-gray-100 w-full max-w-5xl rounded-3xl relative overflow-hidden shadow-2xl flex flex-col md:flex-row h-[85vh] md:h-auto animate-float">
+            <button onclick="closeModal()"
+                class="absolute top-6 right-6 text-gray-400 hover:text-aurora-purple z-20 text-2xl transition"><i
+                    class="fa-solid fa-xmark"></i></button>
+
+            <div class="md:w-1/2 bg-gray-50 relative overflow-hidden">
+                <img src="" id="modal-img" class="w-full h-full object-cover">
+                <div class="absolute bottom-6 left-6 flex gap-2">
+                    <a href="#"
+                        class="px-6 py-2 bg-white/90 backdrop-blur text-aurora-dark text-xs font-bold rounded-full shadow-sm hover:text-aurora-purple transition">View
+                        Live</a>
+                </div>
+            </div>
+
+            <div class="md:w-1/2 p-10 overflow-y-auto">
+                <span class="text-aurora-purple text-xs font-bold uppercase tracking-widest mb-2 block"
+                    id="modal-category">UI/UX Design</span>
+                <h3 class="text-3xl font-head font-bold text-aurora-dark mb-4" id="modal-title">Project Title</h3>
+                <p class="text-aurora-muted text-sm leading-relaxed mb-8" id="modal-desc">Description...</p>
+
+                <div class="mb-8">
+                    <h4 class="text-aurora-dark font-bold text-sm mb-3">Tools Used</h4>
+                    <div class="flex flex-wrap gap-2" id="modal-tools">
+                    </div>
+                </div>
+
+                <div class="p-6 bg-aurora-bg rounded-2xl border border-aurora-purple/10">
+                    <h4 class="text-aurora-dark font-bold text-sm mb-3">Project Outcome</h4>
+                    <ul class="text-aurora-muted text-xs space-y-2 list-disc list-inside">
+                        <li>Enhanced User Engagement</li>
+                        <li>Clean & Consistent UI</li>
+                        <li>Responsive on all devices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const projectsData = [
+            {
+                id: 1,
+                title: "Cambry Agency Website",
+                category: "ui",
+                desc: "Designed a modern and user-centric agency website UI/UX using Figma, focusing on clean layout, usability, and visual consistency. Created responsive screens, wireframes, and interactive components to enhance user experience.",
+                tools: ["Figma", "HTML5", "CSS3", "JS"],
+                img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800"
+            },
+            {
+                id: 2,
+                title: "Food Delivery App",
+                category: "mobile",
+                desc: "Designed a food delivery mobile app UI/UX using Figma with a focus on intuitive navigation and user-friendly flow. Created wireframes and high-fidelity screens to ensure a smooth ordering experience [cite: 104-106].",
+                tools: ["Figma", "Wireframing", "Prototyping"],
+                img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800"
+            },
+            {
+                id: 3,
+                title: "Heart Disease Prediction",
+                category: "research",
+                desc: "Developed a machine learning model to analyze health data and predict heart disease risk using preprocessing and classification. A Data Science initiative bridging health and tech [cite: 116-118].",
+                tools: ["Python", "Machine Learning", "Data Mining"],
+                img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800"
+            },
+            {
+                id: 4,
+                title: "Dark Theme Personal Portfolio",
+                category: "ui",
+                desc: "Designed and structured a modern, high-contrast personal portfolio website to effectively showcase professional services, including web development, UI/UX design, data analysis, IT support, and WordPress development. The layout features conversion-focused sections like pricing tiers, project galleries, and skill meters.",
+                tools: ["Figma", "UI/UX Design", "Web Development", "CSS"],
+                img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800"
+            },
+            {
+                id: 5,
+                title: "Split-Screen Portfolio Landing Page",
+                category: "ui",
+                desc: "Crafted a vibrant and engaging split-screen hero section for a personal portfolio. The design pairs clean, modern typography and distinct call-to-action buttons with a playful 3D character illustration to create a memorable and welcoming personal brand.",
+                tools: ["UI/UX Design", "Figma", "Web Development"],
+                img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800"
+            },
+            {
+                id: 6,
+                title: "Harvest Organic E-Commerce Website",
+                category: "ui",
+                desc: "Created a comprehensive e-commerce homepage tailored for an organic food brand. The user-friendly layout drives conversions through intuitive product categorization, highlighted bestsellers with pricing, trust-building certification badges, and customer testimonials.",
+                tools: ["UI/UX Design", "WordPress Development", "E-commerce"],
+                img: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800"
+            },
+            {
+                "id": 7,
+                "title": "TechWisdom ERP Dashboard",
+                "category": "data-analysis",
+                "desc": "Designed and developed the leads overview dashboard for the TechWisdom Technologies ERP system. The dark-themed interface provides real-time data visualization for revenue, expenses, and conversion tracking to streamline business analytics and decision-making.",
+                "tools": ["UI/UX Design", "Data Analysis", "Web Development"],
+                "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800"
+            },
+            {
+                "id": 8,
+                "title": "Dua & Ruqyah Web Platform",
+                "category": "ui-ux-design",
+                "desc": "Designed a serene and highly accessible web interface for the 'Masnoon Duas & Ruqyah Collection' app. The layout features intuitive, grid-based categorization for religious content and clean call-to-actions to drive mobile application downloads.",
+                "tools": ["UI/UX Design", "Web Development", "Figma"],
+                "img": "https://images.unsplash.com/photo-1601142634808-38923eb7c560?q=80&w=800"
+            },
+            {
+                "id": 9,
+                "title": "TechWisdom Corporate Website",
+                "category": "web-development",
+                "desc": "Built the official corporate landing page for TechWisdom Technologies. The responsive, blue-and-white layout emphasizes professional IT services, showcasing core features, management solutions, and client testimonials to drive B2B engagement.",
+                "tools": ["Web Development", "UI/UX Design", "IT Support"],
+                "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800"
+            },
+            {
+    "id": 10,
+    "title": "Portfolio Blog Layout",
+    "category": "ui-ux-design",
+    "desc": "Designed a clean and readable blog detail page for a personal portfolio. The layout prioritizes elegant typography and features an organized sidebar with tags, recent posts, and a stylized comment section to encourage user engagement.",
+    "tools": ["UI/UX Design", "Figma", "Web Development"],
+    "img": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800"
+},
+   
+    {
+        "id": 11,
+        "title": "Healthy Food Web Dashboard",
+        "category": "ui-ux-design",
+        "desc": "Designed an intuitive and vibrant web dashboard for a healthy food platform. The user interface features organic ingredient tracking, top flavor metrics, and engaging illustrations to seamlessly promote healthy lifestyle choices.",
+        "tools": ["UI/UX Design", "Figma", "Web Development"],
+        "img": "assets/Frame 4.jpg"
+    },
+    {
+        "id": 12,
+        "title": "TechWisdom Corporate Blog",
+        "category": "web-development",
+        "desc": "Built the corporate blog and resources section for TechWisdom Technologies. The layout employs a clean masonry grid for articles, dynamic category filtering, and integrated social feeds to drive organic traffic and engagement.",
+        "tools": ["Web Development", "UI/UX Design", "IT Support"],
+        "img": "assets/Blog-page.jpg"
+    },
+    {
+    "id": 13,
+    "title": "Portfolio Blog Grid",
+    "category": "ui-ux-design",
+    "desc": "Designed a clean, card-based grid layout for the blog section of a personal portfolio. The interface features structured post previews with clear typography, author metadata, and consistent spacing to ensure a highly readable and engaging user experience.",
+    "tools": ["UI/UX Design", "Figma", "Web Development"],
+    "img": "https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=800"
+}
+
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('project-grid');
+
+            projectsData.forEach(proj => {
+                let badgeClass = 'bg-aurora-bg text-aurora-purple';
+                if (proj.category === 'mobile') badgeClass = 'bg-pink-50 text-pink-500';
+                if (proj.category === 'research') badgeClass = 'bg-blue-50 text-blue-500';
+
+                const html = `
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-soft transition duration-500 group project-card ${proj.category} cursor-pointer" onclick="openModal(${proj.id})">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="${proj.img}" class="w-full h-full object-cover project-img transition duration-700">
+                            <div class="absolute top-4 left-4 ${badgeClass} px-3 py-1 rounded-full text-[10px] font-bold uppercase">
+                                ${proj.category === 'ui' ? 'UI/UX Design' : proj.category === 'mobile' ? 'Mobile App' : 'Data Science'}
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold text-aurora-dark mb-2 group-hover:text-aurora-purple transition">${proj.title}</h3>
+                            <p class="text-aurora-muted text-sm line-clamp-2 mb-6">${proj.desc}</p>
+                            <span class="text-xs font-bold text-aurora-purple border-b border-aurora-purple pb-1">View Case Study</span>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += html;
+            });
+
+            // Cursor Logic
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            window.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = `${e.clientX}px`;
+                cursorDot.style.top = `${e.clientY}px`;
+                cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
+            });
+        });
+
+        // Filter Logic
+        function filterProjects(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('bg-transparent', 'text-gray-500', 'border-gray-200');
+            });
+            event.target.classList.add('active');
+            event.target.classList.remove('bg-transparent', 'text-gray-500', 'border-gray-200');
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                if (cat === 'all' || card.classList.contains(cat)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Logic
+        function openModal(id) {
+            const proj = projectsData.find(p => p.id === id);
+            document.getElementById('modal-title').innerText = proj.title;
+            document.getElementById('modal-desc').innerText = proj.desc;
+            document.getElementById('modal-img').src = proj.img;
+            document.getElementById('modal-category').innerText = proj.category.toUpperCase();
+
+            const toolsContainer = document.getElementById('modal-tools');
+            toolsContainer.innerHTML = proj.tools.map(t => `<span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-gray-600">${t}</span>`).join('');
+
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.getElementById('project-modal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.getElementById('project-modal').classList.remove('flex');
+        }
+    </script>
+</body>
+
+</html>

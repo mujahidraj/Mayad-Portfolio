@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Asmaul Husna Mayad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aurora: {
+                            bg: '#fdf4ff',
+                            white: '#ffffff',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            dark: '#1f2937',
+                            muted: '#6b7280'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        head: ['"Outfit"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(168, 85, 247, 0.15)',
+                        'glow': '0 0 20px rgba(236, 72, 153, 0.3)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fdf4ff; color: #1f2937; cursor: none; }
+        
+        /* Cursor (Consistent) */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: #a855f7; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid #a855f7; transition: all 0.1s; }
+        body:hover .cursor-outline { width: 50px; height: 50px; background-color: rgba(168, 85, 247, 0.05); }
+
+        /* Filter Button Active */
+        .skill-filter.active { background-color: #a855f7; color: white; border-color: #a855f7; }
+
+        /* Tooltip */
+        .tool-card:hover .tooltip { opacity: 1; visibility: visible; transform: translateY(0); }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-aurora-purple selection:text-white">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+<nav class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300 relative" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        
+        <a href="index.html" class="flex items-center text-2xl font-head font-bold tracking-tight">
+            <img src="https://i.postimg.cc/wMczPXsy/mayad.jpg" alt="Asmaul Husna Mayad" class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-aurora-purple shadow-sm">
+            <span class="text-aurora-purple mr-1">✿</span> 
+            <span id="nav-name">ASMAUL HUSNA MAYAD</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-aurora-muted" id="nav-menu">
+            <li><a href="index.html" class="hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="text-aurora-purple font-bold">Gallery</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                Hire Me
+            </a>
+            
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aurora-muted hover:text-aurora-purple focus:outline-none transition">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-white/50 shadow-lg top-24 left-0">
+        <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-aurora-muted">
+            <li><a href="index.html" class="block hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="block hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="block hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="block hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="block hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="block hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="block text-aurora-purple font-bold">Gallery</a></li>
+            <li class="md:hidden mt-2">
+                <a href="contact.html" class="block text-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                    Hire Me
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <header class="relative py-24 px-6 text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="text-aurora-pink font-bold text-xs uppercase tracking-widest mb-4 block animate-pulse">The Arsenal</span>
+            <h1 class="text-4xl md:text-6xl font-head font-bold text-aurora-dark mb-6">
+                Tools that shape <br> <span class="text-gradient">Experiences.</span>
+            </h1>
+            <p class="text-aurora-muted text-lg max-w-2xl mx-auto">
+                My proficiency spans high-fidelity prototyping, user research methodologies, and front-end development. I bridge the gap between aesthetic vision and technical feasibility.
+            </p>
+        </div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-aurora-purple/10 to-aurora-pink/10 rounded-full blur-[100px] -z-10"></div>
+    </header>
+
+    <section class="py-12 px-6 bg-white sticky top-24 z-40 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-4">
+            <button onclick="filterSkills('all')" class="skill-filter active px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">All Tools</button>
+            <button onclick="filterSkills('design')" class="skill-filter px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">Design & Prototype</button>
+            <button onclick="filterSkills('dev')" class="skill-filter px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">Development</button>
+            <button onclick="filterSkills('research')" class="skill-filter px-6 py-2 rounded-full border border-gray-200 text-sm font-bold text-gray-500 hover:border-aurora-purple transition">Research & Analysis</button>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8" id="tools-grid">
+            
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card design relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-figma text-purple-600"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Figma</h4>
+                <p class="text-xs text-gray-400 mt-1">Primary Tool</p>
+                
+                <div class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-aurora-dark text-white text-xs px-3 py-1 rounded opacity-0 invisible transition-all duration-300">
+                    High Proficiency
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card design relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <span class="font-bold text-pink-600">Xd</span>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Adobe XD</h4>
+                <p class="text-xs text-gray-400 mt-1">Prototyping</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card dev relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-html5 text-orange-500"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">HTML/CSS</h4>
+                <p class="text-xs text-gray-400 mt-1">Structure</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card dev relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-js text-yellow-400"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">JavaScript</h4>
+                <p class="text-xs text-gray-400 mt-1">Basic Logic</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card research relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-chart-pie text-blue-500"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Data Mining</h4>
+                <p class="text-xs text-gray-400 mt-1">Analysis</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card design relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-jira text-blue-400"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Jira</h4>
+                <p class="text-xs text-gray-400 mt-1">Management</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card design relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-trello text-blue-600"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Trello</h4>
+                <p class="text-xs text-gray-400 mt-1">Workflow</p>
+            </div>
+
+             <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card design relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-chalkboard-user text-blue-600"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Canva</h4>
+                <p class="text-xs text-gray-400 mt-1">Design</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card design relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-css3-alt text-blue-600"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">CSS</h4>
+                <p class="text-xs text-gray-400 mt-1">Development</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-soft transition text-center group tool-card design relative">
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-check text-red-600"></i>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Wordpress</h4>
+                <p class="text-xs text-gray-400 mt-1">Development</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-16 text-center">Core Competencies</h2>
+            
+            <div class="space-y-8">
+                <div class="flex flex-col md:flex-row gap-8 items-center group">
+                    <div class="w-full md:w-1/2 p-8 bg-aurora-bg rounded-3xl border border-transparent group-hover:border-aurora-purple/20 transition duration-500">
+                        <div class="flex items-center gap-4 mb-4">
+                            <i class="fa-solid fa-pen-ruler text-2xl text-aurora-purple"></i>
+                            <h3 class="text-xl font-bold text-aurora-dark">Interaction Design</h3>
+                        </div>
+                        <p class="text-aurora-muted text-sm leading-relaxed">
+                            Creating engaging interfaces based on Human-Computer Interaction (HCI) principles. I ensure every tap, swipe, and click feels natural and responsive.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-aurora-purple w-[90%] shadow-glow"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-center group">
+                    <div class="w-full md:w-1/2 p-8 bg-aurora-bg rounded-3xl border border-transparent group-hover:border-aurora-pink/20 transition duration-500">
+                        <div class="flex items-center gap-4 mb-4">
+                            <i class="fa-solid fa-mobile-screen text-2xl text-aurora-pink"></i>
+                            <h3 class="text-xl font-bold text-aurora-dark">High-Fidelity Prototyping</h3>
+                        </div>
+                        <p class="text-aurora-muted text-sm leading-relaxed">
+                            Transforming wireframes into clickable, realistic prototypes using Figma and Adobe XD for user testing and stakeholder handoff.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-aurora-pink w-[95%] shadow-glow"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-center group">
+                    <div class="w-full md:w-1/2 p-8 bg-aurora-bg rounded-3xl border border-transparent group-hover:border-blue-400/20 transition duration-500">
+                        <div class="flex items-center gap-4 mb-4">
+                            <i class="fa-solid fa-magnifying-glass text-2xl text-blue-400"></i>
+                            <h3 class="text-xl font-bold text-aurora-dark">User Research</h3>
+                        </div>
+                        <p class="text-aurora-muted text-sm leading-relaxed">
+                            Conducting usability testing and user interviews to gather qualitative data, ensuring the product solves real user problems.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-blue-400 w-[85%] shadow-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="text-aurora-purple font-bold text-xs uppercase tracking-widest mb-4 block">Unique Value Proposition</span>
+            <h2 class="text-3xl font-head font-bold mb-8">The Data-Design Hybrid</h2>
+            <p class="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
+                Unlike traditional designers, I leverage **Data Mining** and **Machine Learning** knowledge to create data-driven functionalities and personalized user experiences.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="px-6 py-3 border border-white/20 rounded-full text-sm font-bold flex items-center gap-3">
+                    <i class="fa-brands fa-r-project text-blue-400"></i> R Language
+                </div>
+                <div class="px-6 py-3 border border-white/20 rounded-full text-sm font-bold flex items-center gap-3">
+                    <i class="fa-solid fa-database text-green-400"></i> Data Analysis
+                </div>
+                <div class="px-6 py-3 border border-white/20 rounded-full text-sm font-bold flex items-center gap-3">
+                    <i class="fa-solid fa-brain text-pink-400"></i> Classification Algo
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-16">Interpersonal Skills</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl bg-aurora-bg hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-chalkboard-user text-4xl text-aurora-purple mb-6"></i>
+                    <h4 class="font-bold text-aurora-dark mb-2">Mentorship</h4>
+                    <p class="text-sm text-aurora-muted">Experience mentoring junior students as a Teacher's Assistant.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-aurora-bg hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-lightbulb text-4xl text-yellow-400 mb-6"></i>
+                    <h4 class="font-bold text-aurora-dark mb-2">Creativity</h4>
+                    <p class="text-sm text-aurora-muted">Bringing fresh, innovative perspectives to design challenges.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-aurora-bg hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-people-group text-4xl text-blue-500 mb-6"></i>
+                    <h4 class="font-bold text-aurora-dark mb-2">Collaboration</h4>
+                    <p class="text-sm text-aurora-muted">Seamless teamwork using Discord, Slack, and Microsoft Teams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg border-t border-gray-100">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-16 items-center justify-center">
+            <div class="text-center">
+                <div class="relative w-32 h-32 mx-auto mb-4 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle cx="64" cy="64" r="56" stroke="white" stroke-width="8" fill="none" />
+                        <circle cx="64" cy="64" r="56" stroke="#a855f7" stroke-width="8" fill="none" stroke-dasharray="351" stroke-dashoffset="0" class="transition-all duration-1000 ease-out" />
+                    </svg>
+                    <span class="absolute text-xl font-bold text-aurora-purple">100%</span>
+                </div>
+                <h4 class="font-bold text-aurora-dark">Bangla</h4>
+                <p class="text-xs text-aurora-muted">Native Proficiency</p>
+            </div>
+
+            <div class="text-center">
+                <div class="relative w-32 h-32 mx-auto mb-4 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle cx="64" cy="64" r="56" stroke="white" stroke-width="8" fill="none" />
+                        <circle cx="64" cy="64" r="56" stroke="#ec4899" stroke-width="8" fill="none" stroke-dasharray="351" stroke-dashoffset="35" class="transition-all duration-1000 ease-out" />
+                    </svg>
+                    <span class="absolute text-xl font-bold text-aurora-pink">90%</span>
+                </div>
+                <h4 class="font-bold text-aurora-dark">English</h4>
+                <p class="text-xs text-aurora-muted">Fluent / Professional</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Ready to Collaborate?</h2>
+            <p class="text-aurora-muted mb-8">I am currently available for UI/UX projects and full-time opportunities.</p>
+            <div class="flex justify-center gap-4">
+                <a href="contact.html" class="px-8 py-3 bg-aurora-purple text-white font-bold rounded-full hover:shadow-lg transition">Send Message</a>
+                <a href="https://linkedin.com/in/" class="px-8 py-3 border border-gray-200 text-gray-600 font-bold rounded-full hover:border-aurora-purple hover:text-aurora-purple transition">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-aurora-bg pt-16 pb-8 px-6 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="#" class="text-xl font-head font-bold tracking-tight text-aurora-dark">
+                    <span class="text-aurora-purple">✿</span> MAYAD
+                </a>
+                <p class="text-aurora-muted text-sm mt-4 leading-relaxed">
+                    Crafting intuitive digital experiences with a focus on user psychology and aesthetic precision.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Navigation</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="index.html" class="hover:text-aurora-purple">Home</a></li>
+                    <li><a href="projects.html" class="hover:text-aurora-purple">Portfolio</a></li>
+                    <li><a href="services.html" class="hover:text-aurora-purple">Services</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Socials</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="https://github.com/asmaulhusnamayad" class="hover:text-aurora-purple">GitHub</a></li>
+                    <li><a href="https://dribbble.com/mayadhusna" class="hover:text-aurora-purple">Dribbble</a></li>
+                    <li><a href="#" class="hover:text-aurora-purple">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><i class="fa-solid fa-location-dot mr-2 text-aurora-purple"></i> Kuril, Dhaka</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-aurora-purple"></i> mayadhusna@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-aurora-muted pt-8 border-t border-gray-200">
+            <p>&copy; 2026 Asmaul Husna Mayad. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter Logic
+        function filterSkills(category) {
+            // Button Active State
+            document.querySelectorAll('.skill-filter').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('bg-transparent', 'text-gray-500', 'border-gray-200');
+                btn.classList.remove('bg-aurora-purple', 'text-white', 'border-aurora-purple');
+            });
+            event.target.classList.add('active');
+            event.target.classList.remove('bg-transparent', 'text-gray-500', 'border-gray-200');
+            event.target.classList.add('bg-aurora-purple', 'text-white', 'border-aurora-purple');
+
+            // Grid Filtering
+            const items = document.querySelectorAll('.tool-card');
+            items.forEach(item => {
+                if(category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience | Asmaul Husna Mayad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aurora: {
+                            bg: '#fdf4ff',
+                            white: '#ffffff',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            dark: '#1f2937',
+                            muted: '#6b7280'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        head: ['"Outfit"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(168, 85, 247, 0.15)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fdf4ff; color: #1f2937; cursor: none; }
+        
+        /* Cursor */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: #a855f7; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid #a855f7; transition: all 0.1s; }
+        body:hover .cursor-outline { width: 50px; height: 50px; background-color: rgba(168, 85, 247, 0.05); }
+
+        /* Timeline Logic */
+        .timeline-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: #e5e7eb; z-index: 0; }
+        .timeline-progress { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 0%; background: linear-gradient(to bottom, #a855f7, #ec4899); z-index: 1; transition: height 0.1s; }
+        
+        /* Reference Card Tilt */
+        .tilt-card { transition: transform 0.1s; transform-style: preserve-3d; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-aurora-purple selection:text-white">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+<nav class="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300 relative" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        
+        <a href="index.html" class="flex items-center text-2xl font-head font-bold tracking-tight">
+            <img src="https://i.postimg.cc/wMczPXsy/mayad.jpg" alt="Asmaul Husna Mayad" class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-aurora-purple shadow-sm">
+            <span class="text-aurora-purple mr-1">✿</span> 
+            <span id="nav-name">ASMAUL HUSNA MAYAD</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-aurora-muted" id="nav-menu">
+            <li><a href="index.html" class="hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="text-aurora-purple font-bold">Gallery</a></li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+            <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                Hire Me
+            </a>
+            
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-aurora-muted hover:text-aurora-purple focus:outline-none transition">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-white/50 shadow-lg top-24 left-0">
+        <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-aurora-muted">
+            <li><a href="index.html" class="block hover:text-aurora-purple transition">Home</a></li>
+            <li><a href="about.html" class="block hover:text-aurora-purple transition">About</a></li>
+            <li><a href="skills.html" class="block hover:text-aurora-purple transition">Skills</a></li>
+            <li><a href="projects.html" class="block hover:text-aurora-purple transition">Portfolio</a></li>
+            <li><a href="services.html" class="block hover:text-aurora-purple transition">Services</a></li>
+            <li><a href="research.html" class="block hover:text-aurora-purple transition">Research</a></li>
+            <li><a href="gallery.html" class="block text-aurora-purple font-bold">Gallery</a></li>
+            <li class="md:hidden mt-2">
+                <a href="contact.html" class="block text-center px-8 py-3 bg-aurora-purple text-white text-sm font-bold rounded-full hover:bg-aurora-pink transition shadow-soft">
+                    Hire Me
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <header class="relative py-24 px-6 text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="text-aurora-pink font-bold text-xs uppercase tracking-widest mb-4 block animate-pulse">My Journey</span>
+            <h1 class="text-4xl md:text-6xl font-head font-bold text-aurora-dark mb-6">
+                Designing My <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-aurora-purple to-aurora-pink">Future Path.</span>
+            </h1>
+            <p class="text-aurora-muted text-lg max-w-2xl mx-auto">
+                From academic excellence in Rajshahi to leading lab sessions at AIUB. Every step has been a lesson in empathy, leadership, and design.
+            </p>
+        </div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-aurora-purple/10 to-transparent rounded-full blur-[100px] -z-10"></div>
+    </header>
+
+    <section class="py-12 px-6 bg-white border-y border-gray-100">
+        <div class="max-w-5xl mx-auto bg-aurora-bg rounded-3xl p-12 border border-aurora-purple/10 shadow-soft relative overflow-hidden group hover:border-aurora-purple/30 transition duration-500">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-aurora-purple/10 rounded-full blur-2xl group-hover:scale-150 transition duration-700"></div>
+            
+            <div class="flex flex-col md:flex-row gap-12 items-center relative z-10">
+                <div class="w-full md:w-1/3">
+                    <div class="w-24 h-24 bg-white rounded-2xl flex items-center justify-center text-4xl text-aurora-purple shadow-sm mb-6">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <span class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase tracking-wider">Current Role</span>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <h3 class="text-3xl font-head font-bold text-aurora-dark mb-2">Teacher's Assistant</h3>
+                    <p class="text-aurora-purple font-bold mb-6">American International University - Bangladesh</p>
+                    <p class="text-aurora-muted text-sm leading-relaxed mb-6">
+                        Oct 2025 - Present. <br>
+                        Assisting faculty members in conducting laboratory sessions and evaluating student performance in Computer Science courses. [cite_start]Mentoring junior students to simplify complex technical concepts [cite: 92-95].
+                    </p>
+                    <div class="flex gap-4">
+                        <span class="px-4 py-2 bg-white rounded-lg text-xs font-bold text-gray-500 shadow-sm">Mentorship</span>
+                        <span class="px-4 py-2 bg-white rounded-lg text-xs font-bold text-gray-500 shadow-sm">Lab Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg overflow-hidden">
+        <div class="max-w-4xl mx-auto relative" id="timeline-container">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-16 text-center">Career & Education</h2>
+            
+            <div class="timeline-line hidden md:block"></div>
+            <div class="timeline-progress hidden md:block" id="progress-bar"></div>
+
+            <div class="space-y-16">
+                <div class="relative flex flex-col md:flex-row justify-between items-center w-full timeline-item">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <h4 class="text-xl font-bold text-aurora-dark">Teacher's Assistant</h4>
+                        <p class="text-sm text-aurora-purple font-bold">AIUB</p>
+                        <p class="text-xs text-aurora-muted mt-2">Leadership & Academic Support</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 bg-white border-4 border-aurora-purple rounded-full z-10 flex items-center justify-center shadow-lg">
+                        <div class="w-2 h-2 bg-aurora-purple rounded-full"></div>
+                    </div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-8">
+                        <span class="inline-block px-4 py-1 bg-white rounded-full text-xs font-bold text-aurora-purple shadow-sm mb-2 border border-gray-100">Oct 2025 - Present</span>
+                        <p class="text-sm text-aurora-muted md:hidden">Teacher's Assistant at AIUB</p>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row justify-between items-center w-full timeline-item">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <span class="inline-block px-4 py-1 bg-white rounded-full text-xs font-bold text-aurora-pink shadow-sm mb-2 border border-gray-100">2022 - 2025</span>
+                        <p class="text-sm text-aurora-muted md:hidden">BSc in CS</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 bg-white border-4 border-aurora-pink rounded-full z-10 flex items-center justify-center shadow-lg">
+                        <div class="w-2 h-2 bg-aurora-pink rounded-full"></div>
+                    </div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-8">
+                        <h4 class="text-xl font-bold text-aurora-dark">Bachelor in Science</h4>
+                        <p class="text-sm text-aurora-pink font-bold">AIUB</p>
+                        <p class="text-xs text-aurora-muted mt-2">Major in Information Systems. [cite_start]<br> <span class="font-bold text-aurora-dark">CGPA: 3.83</span> [cite: 81-82]</p>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row justify-between items-center w-full timeline-item">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <h4 class="text-xl font-bold text-aurora-dark">Higher Secondary Certificate</h4>
+                        <p class="text-sm text-blue-500 font-bold">Rajshahi City College</p>
+                        <p class="text-xs text-aurora-muted mt-2">Science Group. [cite_start]<br> <span class="font-bold text-aurora-dark">GPA: 4.67</span> [cite: 83-85]</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 bg-white border-4 border-blue-400 rounded-full z-10 flex items-center justify-center shadow-lg">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    </div>
+                    <div class="w-full md:w-5/12 pl-12 md:pl-8">
+                        <span class="inline-block px-4 py-1 bg-white rounded-full text-xs font-bold text-blue-500 shadow-sm mb-2 border border-gray-100">2018 - 2019</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-5xl mx-auto text-center">
+            <i class="fa-solid fa-crown text-4xl text-yellow-400 mb-6 animate-float"></i>
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-4">Academic Excellence</h2>
+            <p class="text-aurora-muted mb-12">Consistently performing at the top of the class.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 bg-aurora-bg rounded-3xl border border-transparent hover:border-yellow-400 transition group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-yellow-500 font-bold shadow-sm">5x</div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-aurora-dark">Dean's List Honors</h4>
+                            <p class="text-xs text-aurora-muted">Academic Award</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-aurora-muted text-left leading-relaxed">
+                        [cite_start]Received Dean's List Honors award from AIUB for successfully earning a grade point of 4.00/4.00 five times per semester throughout the academic career[cite: 90].
+                    </p>
+                </div>
+                
+                <div class="p-8 bg-aurora-bg rounded-3xl border border-transparent hover:border-green-400 transition group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-green-500 font-bold shadow-sm"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-aurora-dark">Graduated with Distinction</h4>
+                            <p class="text-xs text-aurora-muted">B.Sc Completion</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-aurora-muted text-left leading-relaxed">
+                        [cite_start]Completed Bachelor of Science with a Major in Information Systems with a final CGPA of 3.83, reflecting consistent dedication and hard work[cite: 82].
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 relative z-10 text-center">
+            <div>
+                <div class="w-20 h-20 mx-auto bg-white/10 rounded-full flex items-center justify-center text-3xl mb-6 text-aurora-purple"><i class="fa-solid fa-people-roof"></i></div>
+                <h4 class="font-bold text-lg mb-2">Mentorship</h4>
+                <p class="text-sm text-gray-400">Guiding junior students in labs.</p>
+            </div>
+            <div>
+                <div class="w-20 h-20 mx-auto bg-white/10 rounded-full flex items-center justify-center text-3xl mb-6 text-aurora-pink"><i class="fa-solid fa-lightbulb"></i></div>
+                <h4 class="font-bold text-lg mb-2">Design Thinking</h4>
+                [cite_start]<p class="text-sm text-gray-400">Problem solving via creativity[cite: 110].</p>
+            </div>
+            <div>
+                <div class="w-20 h-20 mx-auto bg-white/10 rounded-full flex items-center justify-center text-3xl mb-6 text-blue-400"><i class="fa-solid fa-bullhorn"></i></div>
+                <h4 class="font-bold text-lg mb-2">Presentation</h4>
+                [cite_start]<p class="text-sm text-gray-400">Good Presenter & Speaker[cite: 108].</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-aurora-bg">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-12 text-center">Mentors & References</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8" id="ref-grid">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-soft transition tilt-card">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-aurora-purple/10 rounded-full flex items-center justify-center text-aurora-purple font-bold">M</div>
+                        <div>
+                            <h4 class="font-bold text-aurora-dark">Mohaimen-Bin-Noor</h4>
+                            <p class="text-xs text-aurora-muted">Assistant Professor, AIUB</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4"><i class="fa-solid fa-envelope mr-2 text-aurora-purple"></i> mohaimen.niloy@aiub.edu</p>
+                    <div class="h-1 w-12 bg-aurora-purple rounded-full"></div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-soft transition tilt-card">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-aurora-pink/10 rounded-full flex items-center justify-center text-aurora-pink font-bold">S</div>
+                        <div>
+                            <h4 class="font-bold text-aurora-dark">Syed Nafiul Shefat</h4>
+                            <p class="text-xs text-aurora-muted">Lecturer, AIUB</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4"><i class="fa-solid fa-envelope mr-2 text-aurora-pink"></i> nafiul.shefat@aiub.edu</p>
+                    <div class="h-1 w-12 bg-aurora-pink rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white border-t border-gray-100">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-12 text-center">My Daily Protocol</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="p-6 text-center border border-gray-100 rounded-2xl hover:border-aurora-purple transition">
+                    <span class="text-xs font-bold text-gray-400 block mb-2">Morning</span>
+                    <i class="fa-solid fa-coffee text-2xl text-brown-500 mb-3"></i>
+                    <h4 class="font-bold text-aurora-dark">Research & Coffee</h4>
+                </div>
+                <div class="p-6 text-center border border-gray-100 rounded-2xl hover:border-aurora-purple transition">
+                    <span class="text-xs font-bold text-gray-400 block mb-2">Afternoon</span>
+                    <i class="fa-brands fa-figma text-2xl text-purple-600 mb-3"></i>
+                    <h4 class="font-bold text-aurora-dark">UI Design Sprints</h4>
+                </div>
+                <div class="p-6 text-center border border-gray-100 rounded-2xl hover:border-aurora-purple transition">
+                    <span class="text-xs font-bold text-gray-400 block mb-2">Evening</span>
+                    <i class="fa-solid fa-users-rectangle text-2xl text-blue-500 mb-3"></i>
+                    <h4 class="font-bold text-aurora-dark">TA Duties / Mentoring</h4>
+                </div>
+                <div class="p-6 text-center border border-gray-100 rounded-2xl hover:border-aurora-purple transition">
+                    <span class="text-xs font-bold text-gray-400 block mb-2">Night</span>
+                    <i class="fa-solid fa-book-open text-2xl text-pink-500 mb-3"></i>
+                    <h4 class="font-bold text-aurora-dark">Learning New Tech</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-gradient-to-r from-aurora-purple/5 to-aurora-pink/5 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-head font-bold text-aurora-dark mb-6">Explore the Details</h2>
+            <p class="text-aurora-muted mb-8">Download my full CV to see detailed coursework and project breakdown.</p>
+            <button class="px-10 py-4 bg-aurora-dark text-white font-bold rounded-full hover:shadow-lg transition flex items-center gap-3 mx-auto">
+                <i class="fa-solid fa-download"></i> Download Resume
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-aurora-bg pt-16 pb-8 px-6 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <a href="#" class="text-xl font-head font-bold tracking-tight text-aurora-dark">
+                    <span class="text-aurora-purple">✿</span> MAYAD
+                </a>
+                <p class="text-aurora-muted text-sm mt-4 leading-relaxed">
+                    Crafting intuitive digital experiences with a focus on user psychology and aesthetic precision.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Navigation</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="index.html" class="hover:text-aurora-purple">Home</a></li>
+                    <li><a href="about.html" class="hover:text-aurora-purple">About</a></li>
+                    <li><a href="projects.html" class="hover:text-aurora-purple">Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Socials</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><a href="https://github.com/asmaulhusnamayad" class="hover:text-aurora-purple">GitHub</a></li>
+                    <li><a href="https://dribbble.com/mayadhusna" class="hover:text-aurora-purple">Dribbble</a></li>
+                    <li><a href="#" class="hover:text-aurora-purple">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-aurora-dark font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-sm text-aurora-muted">
+                    <li><i class="fa-solid fa-location-dot mr-2 text-aurora-purple"></i> Kuril, Dhaka</li>
+                    <li><i class="fa-solid fa-envelope mr-2 text-aurora-purple"></i> mayadhusna@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-aurora-muted pt-8 border-t border-gray-200">
+            <p>&copy; 2026 Asmaul Husna Mayad. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Timeline Scroll Logic
+        window.addEventListener('scroll', () => {
+            const container = document.getElementById('timeline-container');
+            const progressBar = document.getElementById('progress-bar');
+            
+            const rect = container.getBoundingClientRect();
+            const totalHeight = container.clientHeight;
+            const windowHeight = window.innerHeight;
+            
+            let percentage = 0;
+            
+            // Calculate how much of the container has been scrolled past
+            if (rect.top < windowHeight / 2) {
+                const scrolled = (windowHeight / 2) - rect.top;
+                percentage = (scrolled / totalHeight) * 100;
+            }
+            
+            percentage = Math.max(0, Math.min(100, percentage));
+            progressBar.style.height = `${percentage}%`;
+        });
+
+        // Reference Tilt Effect
+        const cards = document.querySelectorAll('.tilt-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * 5; // Max 5deg rotation
+                const rotateY = ((x - centerX) / centerX) * -5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
+            });
+        });
+    </script>
+</body>
+</html>
