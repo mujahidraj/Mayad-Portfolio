@@ -413,6 +413,15 @@
     </footer>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            // Toggles the 'hidden' class on and off
+            mobileMenu.classList.toggle('hidden');
+        });
+    });
         // Filter Logic
         function filterSkills(category) {
             // Button Active State

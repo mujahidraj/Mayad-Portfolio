@@ -334,8 +334,19 @@
     </footer>
 
     <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            // Toggles the 'hidden' class on and off
+            mobileMenu.classList.toggle('hidden');
+        });
+    });
+
         const aboutData = {
-            bio: "Passionate UI/UX Designer with a specialized background in Human-Computer Interaction (HCI). I combine a keen eye for aesthetics with a deep understanding of user psychology to create intuitive and engaging digital experiences [cite: 76-77]. Leveraging my degree in Information Systems, I ensure designs are not only visually striking but also functional[cite: 78]."
+            bio: "I am Asmaul Husna Mayad graduated from American International University - Bangladesh majored in Information Technology. Passionate UI/UX Designer with a specialized background in Human-Computer Interaction (HCI).I have done majored in Data science, Data mining and Human Computer Interaction. I combine a keen eye for aesthetics with a deep understanding of user psychology to create intuitive and engaging digital experiences. Leveraging my degree in Information Systems, I ensure designs are not only visually striking but also functional."
         };
 
         document.addEventListener('DOMContentLoaded', () => {
